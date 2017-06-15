@@ -1,0 +1,42 @@
+{% extends "rango/base.html" %}
+
+{% load static %}
+
+{% block title %}
+  Pages Category {{ category.name }}
+{% endblock %}
+
+{% block body_block %}
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h1>{{ category_name }}, views: {{ category.views }}, likes: {{ category.likes }} </h1>
+    </div>
+    <div class="panel-body">
+      {% if category %}
+        <ul>
+          {% for page in pages %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        The specified category {{ category_name }} does not exist!
+      {% endif %}
+    </div>
+  </div>
+    {% if user.is_authenticated %}
+      {% if category %}
+        <a href="{% url 'add_page' category_name_slug %}">Add page for category "{{ category_name }}"</a>
+      {% else %}
+        <p>Category this name does not exist</p>
+      {% endif %}
+    {% endif %}
+    <p>
+      <strong id="like_count">{{ category.likes }}</strong> people like this category
+      {% if user.is_authenticated %}
+        <button id="likes" data-catid="{{category.id}}" class="btn btn-primary" type="button">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Like
+        </button>
+      {% endif %}
+  </p>
+{% endblock %}

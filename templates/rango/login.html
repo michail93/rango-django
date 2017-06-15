@@ -1,0 +1,22 @@
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block body_block %}
+  <link rel="stylesheet" href="http://getbootstrap.com/examples/signin/signin.css">
+  {% if user.is_authenticated %}
+    <h3 class="text-danger">You are already logged in</h3>
+  {% else %}
+  <form class="form-signin" role="form" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input class="form-control" placeholder="Username" maxlength="254" name="username" type="text" required autofocus="">
+    <input type="text" class="form-control" placeholder="Password" id="id_password" name="password" required>
+    <button class="btn btn-lg btn-primary btn-block" tepe="submit" value="Submit">Sign in</button>
+  </form>
+  {% endif %}
+{% endblock %}

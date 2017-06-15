@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <title>Rango - {% block title %} Django!{% endblock %}</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/examples/dashboard/dashboard.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/rango-jquery.js' %}"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/rango/" class="navbar-brand">Rango</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'index' %}">Home</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'add_category' %}">Add New Category</a></li>
+              {% else %}
+                <li><a href="{% url 'register' %}">Register Here</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+              {% endif %}
+            <li><a href="{% url 'about' %}">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <blockquote>
+            <h5>Beautiful is better than ugly.<h5>
+            <p>Explicit is better than implicit.</p>
+            <p>Simple is better than complex.</p>
+            <p>Complex is better than complicated.</p>
+            <p>Flat is better than nested.</p>
+            <p>Sparse is better than dense.</p>
+            <p>Readability counts.</p>
+            <p>Special cases aren't special enough to break the rules.</p>
+            <p>Although practicality beats purity.</p>
+            <p>Errors should never pass silently.</p>
+            <p>Unless explicitly silenced.</p>
+            <p>In the face of ambiguity, refuse the temptation to guess.</p>
+            <p>There should be one-- and preferably only one --obvious way to do it.</p>
+            <p>Although that way may not be obvious at first unless you're Dutch.</p>
+            <p>Now is better than never.</p>
+            <p>Although never is often better than *right* now.</p>
+            <p>If the implementation is hard to explain, it's a bad idea.</p>
+            <p></p>
+            <p>If the implementation is easy to explain, it may be a good idea.</p>
+            <p>Namespaces are one honking great idea -- let's do more of those!</p>
+            <footer>The Zen of Python, by Tim Peters</footer>
+          </blockquote>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div>
+            {% block body_block %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

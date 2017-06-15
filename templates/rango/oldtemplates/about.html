@@ -1,0 +1,36 @@
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+  About
+{% endblock %}
+
+{% block body_block %}
+  <p>Your visit: {{ visits }}</p>
+  <h1>Rango says here is the about page</h1>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>About</title>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap-theme.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/js/bootstrap.js" %}>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 style="margin-left: 30px;">Rango says here is the about page</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <a href="{% url 'index'%}"><button class="btn btn-success"><span class="glyphicon glyphicon-inbox"> To rango</span></button></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->

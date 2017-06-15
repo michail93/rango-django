@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rango</title>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap-theme.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/js/bootstrap.js" %}>
+  </head>
+  <body>
+    <!-- <h1>Rango says...</h1>
+        hello world! <br><strong>{{ boldmessage }}</strong>
+        <br><a href="about/">About</a>
+        <p><img src={% static "images/rango-hamel.jpg" %} alt=""></p> -->
+    <div class="jumbotron" >
+      <!-- <p>{{ user.groups }}</p> test User model -->
+      {% if user.is_authenticated %}
+      <h1 style="margin-left: 30px;">Rango says... hello {{ user.username }}!</h1>
+      {% else %}
+      <h1 style="margin-left: 30px;">Rango says... hello World!</h1>
+      {% endif %}
+      {% if user.username == "admin" %}
+      <h3 style="margin-left: 30px;"><a href="/rango/add_category/">Add a New Category</a></h3>
+      {% endif %}
+      {% if user.is_authenticated %}
+      <h3 style="margin-left: 30px;" ><a href="/rango/restricted/">Restricted Here</a></h3>
+      <h3 style="margin-left: 30px;"><a href="/rango/logout/">Logout</a></h3>
+      {% else %}
+      <h3 style="margin-left: 30px;"><a href="/rango/register/">Register Here</a></h3>
+      <h3 style="margin-left: 30px;"><a href="/rango/login/">Login</a></h3>
+      {% endif %}
+      <p style="margin-left: 30px;">Your visits: {{ visits }}</p>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <a href="about/"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-tasks"> to about</span></button></a>
+        </div>
+        <div class="col-md-2">
+          {% if categories %}
+            <ul>
+              {% for category in categories %}
+              <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <strong>There are not categories present</strong>
+          {% endif %}
+          <div>
+            <p>Top 5 pages</p>
+            {% if pages %}
+              <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page }}</a></li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <strong>pages not present</strong>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img src={% static "images/rango-hamel.jpg" %} alt="">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+  Add Category
+{% endblock %}
+
+{% block body_block %}
+  {% if user.is_authenticated %}
+    <form role="form" id="category_form" action="/rango/add_category/" method="post">
+      {% csrf_token %}
+      {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+      {% endfor %}
+
+      {% for field in form.visible_fields %}
+          {{ field.errors }}
+          {{ field.help_text }}
+          {{ field }}
+      {% endfor %}
+      <br>
+      <input class="btn btn-primary" type="submit" name="submit" value="Create Category">
+    </form>
+  {% else %}
+     <p>Please Authenticate</p>
+  {% endif %}
+{% endblock %}

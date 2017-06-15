@@ -1,0 +1,61 @@
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+  Add Page
+{% endblock %}
+
+{% block body_block %}
+  <h1>{{ category_name }}</h1>
+  {% if category %}
+    <ul>
+      {% for page in pages %}
+      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    The specified category {{ category_name }} does not exist!
+  {% endif %}
+  {% if user.is_authenticated %}
+    {% if category %}
+      <a href="{% url 'add_page' category_name_slug %}">Add page for category "{{ category_name }}"</a>
+    {% else %}
+      Category this name does not exist
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+
+
+<!-- <!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rango</title>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/css/bootstrap-theme.css" %}>
+    <link rel="stylesheet" href={% static "bootstrap/js/bootstrap.js" %}>
+  </head>
+  <body>
+    <h1>{{ category_name }}</h1>
+    {% if category %}
+      <ul>
+        {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      The specified category {{ category_name }} does not exist!
+    {% endif %}
+    {% if user.is_authenticated %}
+      {% if category %}
+        <a href="/rango/category/{{ category_name_slug }}/add-page/">Add page for category "{{ category_name }}"</a>
+      {% else %}
+        Category this name does not exist
+      {% endif %}
+    {% endif %}
+    <p><a href="/rango/">to rango</a></p>
+  </body>
+</html> -->
