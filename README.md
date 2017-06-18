@@ -9,3 +9,7 @@ Pillow     4.1.1
 pip        9.0.1  
 setuptools 23.0.0 
 wheel      0.29.0 
+
+Admin
+useaname : admin
+password : admin
