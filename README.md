@@ -10,6 +10,6 @@ pip        9.0.1
 setuptools 23.0.0 
 wheel      0.29.0 
 
-Admin
-useaname : admin
-password : admin
+Admin\n
+useaname : admin\n
+password : admin\n
