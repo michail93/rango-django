@@ -11,5 +11,7 @@ setuptools 23.0.0
 wheel      0.29.0 
 
 Admin
-useaname : admin
+
+username : admin
+
 password : admin
